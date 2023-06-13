@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Blog_posts', {
+    await queryInterface.createTable('blog_posts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -22,7 +22,7 @@ module.exports = {
         onDelete: 'CASCADE',
         field: 'user_id',
         references: {
-          model: 'Users',
+          model: 'users',
           key: 'id',
         },
       },
@@ -30,19 +30,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      createdAt: {
+      updated: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Blog_posts');
+    await queryInterface.dropTable('blog_posts');
 
   }
 };
