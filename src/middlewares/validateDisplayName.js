@@ -1,17 +1,17 @@
-// middlewares/validateName.js
 module.exports = (req, res, next) => {
-  const { password } = req.body;
+  const { displayName } = req.body;
 
-  if (!password) {
+  if (!displayName) {
     return res.status(400).json(
       { message: 'Some required fields are missing' },
     );
   }
 
-  if (password.length < 6) {
+  if (displayName.length < 8) {
     return res.status(400).json(
-      { message: '"password" length must be at least 6 characters long' },
+      { message: '"displayName" length must be at least 8 characters long' },
     );
   }
+
   next();
 };

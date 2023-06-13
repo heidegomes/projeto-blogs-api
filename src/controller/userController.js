@@ -10,6 +10,16 @@ const login = async (req, res) => {
   return res.status(200).json(result);
 };
 
+const createUser = async (req, res) => {
+  const { displayName, email, password, image } = req.body;
+  const newUser = await userService.createUser(displayName, email, password, image);
+  if (!newUser) {
+    res.status(409).json({ message: 'User already registered' });
+  }
+  return res.status(201).json(newUser);
+};
+
 module.exports = {
   login,
+  createUser,
 };
