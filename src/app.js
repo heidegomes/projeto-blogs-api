@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = require('./routers/userRouter');
+const categoryRouter = require('./routers/categoryRouter');
 
 // ...
 
@@ -8,6 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.use(userRouter);
+app.use(categoryRouter);
 // app.use(userRouter);
 // ...
 
