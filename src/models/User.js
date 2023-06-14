@@ -13,10 +13,10 @@ const userModel = (sequelize, DataTypes) => {
       underscored: true,
     });
 
-  // userModel.associate = (models) => {
-  //   User.belongsToMany(models.Blog_posts,
-  //     { foreignKey: 'user_id', as: 'id' });
-  // };
+  User.associate = (models) => {
+    User.hasMany(models.BlogPost,
+      { foreignKey: 'user_id' });
+  };
 
   return User;
 };
