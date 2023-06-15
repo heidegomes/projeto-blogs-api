@@ -8,7 +8,8 @@ const validateToken = async (req, res, next) => {
     return res.status(401).json({ message: 'Token not found' });
   }
   try {
-    jwt.verify(token, JWT_SECRET);
+    const userData = jwt.verify(token, JWT_SECRET);
+    req.user = userData;
     next();
   } catch (err) {
     return res.status(401).json({ message: 'Expired or invalid token' });

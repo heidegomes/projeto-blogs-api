@@ -4,7 +4,7 @@ const { User } = require('../models');
 const { JWT_SECRET } = process.env;
 
 const objectConfig = {
-  expiresIn: '3h',
+  expiresIn: '24h',
 };
 
 const generateToken = (user) => {

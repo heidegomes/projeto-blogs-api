@@ -7,7 +7,14 @@ const getAll = async (_req, res) => {
 
 const createPost = async (req, res) => {
   const { title, content, categoryIds } = req.body;
-  const newPost = await postService.create(title, content, categoryIds);
+  const { id } = req.user;
+  console.log('req.user', id);
+  const newPost = await postService.createPost({ 
+    title, content, categoryIds, id,
+  });
+  if (!newPost) {
+    return res.status(400).json({ message: 'one or more "categoryIds" not found' });
+  }
   return res.status(201).json(newPost);
 };
 
