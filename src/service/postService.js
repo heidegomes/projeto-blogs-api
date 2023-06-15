@@ -16,6 +16,27 @@ const getAll = async () => {
   return result;
 };
 
+const getById = async (id) => {
+  const result = await BlogPost.findByPk(
+    id,
+    {
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: { attributes: [] },
+      },
+    ],
+  },
+);
+  return result;
+};
+
 const getCategoriesId = async () => {
   const categoriesId = await Category.findAll();
   const arr = categoriesId.map((e) => e.dataValues.id);
@@ -41,4 +62,5 @@ const createPost = async ({ title, content, categoryIds, id }) => {
 module.exports = {
   createPost,
   getAll,
+  getById,
 };
