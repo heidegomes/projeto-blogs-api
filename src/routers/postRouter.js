@@ -16,5 +16,12 @@ postRouter.post(
 );
 postRouter.get('/post', validateToken, postController.getAll);
 postRouter.get('/post/:id', validateToken, postController.getById);
+postRouter.put(
+  '/post/:id',
+  validateTitle,
+  validateContent,
+  validateToken,
+  postController.updatedPost,
+);
 
 module.exports = postRouter;
